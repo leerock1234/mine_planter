@@ -9,16 +9,6 @@ public class Position {
 
     int width;
 
-    public Set getNearbyPositions() {
-        return nearbyPositions;
-    }
-
-    public void setNearbyPositions(Set nearbyPositions) {
-        this.nearbyPositions = nearbyPositions;
-    }
-
-    Set nearbyPositions;
-
     public int getHeight() {
         return height;
     }
@@ -36,8 +26,8 @@ public class Position {
     }
 
     public Position(int x, int y) {
-        this.height = x;
-        this.width = y;
+        this.height = y;
+        this.width = x;
     }
 
     @Override
@@ -51,7 +41,6 @@ public class Position {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getHeight(), getWidth());
     }
 }

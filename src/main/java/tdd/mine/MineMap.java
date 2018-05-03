@@ -32,8 +32,39 @@ public class MineMap {
     }
 
     public int getMineCount(Position position) {
-        return 1;
+        Set<Position> relativePositions = getRelativePositions(position);
+        return countThatHavingMine(relativePositions);
     }
 
+    private int countThatHavingMine(Set<Position> relativePositions) {
+        return 0;
+    }
 
+    Set<Position> getRelativePositions(Position position) {
+        int x = position.width;
+        int y = position.height;
+        Set<Position> result = new HashSet<>();
+        putPositionToResult(result, x-1, y-1);
+        putPositionToResult(result, x, y-1);
+        putPositionToResult(result, x+1, y-1);
+        putPositionToResult(result, x-1, y);
+        putPositionToResult(result, x+1, y);
+        putPositionToResult(result, x-1, y+1);
+        putPositionToResult(result, x, y+1);
+        putPositionToResult(result, x+1, y+1);
+        return result;
+    }
+
+    private void putPositionToResult(Set<Position> result, int x, int y) {
+        if (x<0){
+            return;
+        }
+        if (y<0){
+            return;
+        }
+        if (x>=width){
+            return;
+        }
+        result.add(new Position(x, y));
+    }
 }

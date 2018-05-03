@@ -55,7 +55,6 @@ public class MineMapTest {
         assertTrue(mineMap.hasMine(new Position(0,1)));
         assertFalse(mineMap.hasMine(new Position(1,0)));
         assertFalse(mineMap.hasMine(new Position(1,1)));
-//        assertTrue(mineMap.hasMine(new Position(x:)));
         assertEquals(2,mineMap.getMineCount(new Position(1,0)));
         assertEquals(2,mineMap.getMineCount(new Position(1,1)));
     }
