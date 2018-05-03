@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-public class MineMapPositionTest {
+public class MineMapRelativePositionTest {
 
     @Test
     public void should_get_relative_positions_in_middle_place(){
