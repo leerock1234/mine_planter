@@ -1,5 +1,6 @@
 package tdd.mine;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -43,4 +44,17 @@ public class Position {
     public int hashCode() {
         return Objects.hash(getHeight(), getWidth());
     }
+
+	public Set<Position> getArround() {
+		Set<Position> result = new HashSet<>();
+        result.add(new Position(width-1, height-1));
+        result.add(new Position(width, height-1));
+        result.add(new Position(width+1, height-1));
+        result.add(new Position(width-1, height));
+        result.add(new Position(width+1, height));
+        result.add(new Position(width-1, height+1));
+        result.add(new Position(width, height+1));
+        result.add(new Position(width+1, height+1));
+        return result;
+	}
 }
