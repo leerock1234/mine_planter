@@ -5,7 +5,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Position {
-
+	private boolean isOpenned;
+	
     int height;
 
     int width;
@@ -56,5 +57,13 @@ public class Position {
         result.add(new Position(width, height+1));
         result.add(new Position(width+1, height+1));
         return result;
+	}
+
+	public boolean isOpenned() {
+		return isOpenned;
+	}
+
+	public void setOpenned(boolean isOpenned) {
+		this.isOpenned = isOpenned;
 	}
 }
