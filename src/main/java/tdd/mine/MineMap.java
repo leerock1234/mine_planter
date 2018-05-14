@@ -24,7 +24,7 @@ public class MineMap {
 
 	private boolean isLoss = false;
 
-	public MineMap(int height, int width) {
+	public MineMap(int width, int height) {
 		this.height = height;
 		this.width = width;
 	}
@@ -102,21 +102,32 @@ public class MineMap {
 		if (hasMine(position)) {
 			isLoss = true;
 		}
-		openedPositions.add(position);
-		setWin();
-
+		openField(position);
+		checkWin();
 	}
 
-	private void setWin() {
+	private void openField(Position position) {
+		openedPositions.add(position);
+		if (isSafeField(position)){
+			Set<Position> nonOpenedPositions = this.getNonOpenPositions(position);
+			for(Position nonOpenedPosition : nonOpenedPositions){
+				openField(nonOpenedPosition);
+			}
+		}
+	}
+
+	private boolean isSafeField(Position position) {
+		return getMineCount(position)==0;
+	}
+
+	private void checkWin() {
 		if ((openedPositions.size() + mines.size()) == height * width) {
 			isWin = true;
 		}
 	}
 
 	public boolean isOpen(Position position) {
-
 		return openedPositions.contains(position);
-
 	}
 
 	public boolean isWin() {
@@ -125,5 +136,25 @@ public class MineMap {
 
 	public boolean isLoss() {
 		return isLoss;
+	}
+
+	public Set<Position> getNonOpenPositions(Position position) {
+	    Set<Position> positions = this.getRelativePositions(position);
+	    Set<Position> nonOpenedPositions = removeOpened(positions);
+	    return nonOpenedPositions;
+	}
+
+	private Set<Position> removeOpened(Set<Position> positions) {
+		Set<Position> nonOpenedPositions = new HashSet<>();
+	    for(Position position : positions){
+	    	if (!isOpened(position)){
+	    		nonOpenedPositions.add(position);
+			}
+		}
+		return nonOpenedPositions;
+	}
+
+	private boolean isOpened(Position position) {
+		return this.openedPositions.contains(position);
 	}
 }
